@@ -27,6 +27,9 @@ for user in users:
             #print("    "+url,end=" ")
             request = urlopen("https://"+website+"/"+user)
         except Exception as err:
+            err = str(err)
+            if "404" in err:
+                err = ""
             print("X")
         else:
             print("V")
@@ -40,6 +43,6 @@ if record == "y":
         else:
             with open(user+".txt", "w") as file:
                 for website in data[user]:
-                    file.write(website)
+                    file.write(website+"\n")
                 file.close()
             print(user+".txt done")
